@@ -1,0 +1,192 @@
+/* Global */
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 1em;
+	color: #8a8683;
+	background-color: #fafafa;
+	padding-bottom: 40px;
+}
+
+strong, h1, h2 {
+  font-weight: 700;
+}
+
+img {
+	max-width: 100%;
+}
+
+.clearfix {
+  clear: both;
+}
+
+a {
+	color: inherit !important;
+	text-decoration: none;
+}
+
+a.link {
+  color: #00c0ff !important;
+  cursor: pointer;
+}
+
+a:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+h1 {
+    font: 45px/50px 'Open Sans', sans-serif;
+    color: #00203D;
+    margin: 0 0 14px;
+}
+
+h4 {
+    font: 22px/26px 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: #00203D;
+}
+
+/* Navigation */
+.menu {
+	position:fixed;
+	top:0px;
+	border-bottom: 2px solid #eee;
+	width:100%;
+	height:auto;
+	z-index:100;
+	background-color: white;
+}
+
+#logo {
+	text-align: center;
+	margin: 10px 0;
+}
+#nav {
+	text-align: right;
+	margin: 20px 0 0 0;
+}
+.navigation{
+	float: right;
+	list-style: none;
+	margin: 0;
+}
+.navigation li{
+	float: left;
+	padding:20px 0 20px 50px;
+}
+
+.navigation li.active {
+  font-weight: 700;
+  color: #004165;
+}
+
+#cart span {
+  color: #C01324;
+}
+
+/* content */
+#shop {
+  margin-top: 120px;
+}
+
+#items {
+  margin-top: 40px;
+}
+
+.item {
+  margin-bottom: 40px;
+}
+
+.item h4 span {
+  color: #00A9ED;
+  font-size: 80%;
+}
+
+.item p {
+  font-size: 80%;
+  margin-top: 5px;
+  line-height: 130%;
+}
+
+.item img {
+  border: 2px solid #ccc;
+}
+
+.button {
+  background: #00A9ED;
+  color: white !important;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background: #00c0ff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#cart-items table {
+  width: 100%;
+  margin-bottom: 20px;
+  background: rgba(255,255,255,0.5);
+  border: 2px solid #aaa;
+}
+
+#cart-items table tr td {
+  border-bottom: 2px solid #aaa;
+  padding: 20px;
+  vertical-align: top;
+}
+
+#cart-items table tr td p {
+  margin-top: 10px;
+}
+
+#cart-items table tr:last-child td {
+  border-bottom: 0;
+}
+
+#cart-items table tr td img {
+  border: 2px solid #ccc;
+}
+
+#cart-items table tr td:first-child {
+  width: 140px;
+  padding-right: 0;
+}
+
+#cart-items table tr td:last-child {
+  text-align: right;
+  font-size: 22px;
+  font-weight: 700;
+  color: #00A9ED;
+}
+
+#checkout-form h4 {
+  margin-bottom: 20px;
+}
+
+#checkout-form .form-element {
+  margin-bottom: 15px;
+}
+
+#checkout-form .form-element label {
+  display: block;
+  font-size: 80%;
+  margin-bottom: 7px;
+}
+
+#checkout-form .form-element input {
+  width: 100%;
+  font-size: 18px;
+  padding: 8px 10px;
+}
+
+#checkout-form .form-element select {
+  font-size: 18px;
+  min-width: 150px;
+}

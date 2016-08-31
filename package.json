@@ -1,0 +1,17 @@
+{
+  "name": "nicehatsdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "First Data, Inc.",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "multer": "^1.1.0",
+    "payeezy": "^1.0.4"
+  }
+}

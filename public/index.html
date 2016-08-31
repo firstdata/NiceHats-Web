@@ -1,0 +1,430 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  	<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+  	<title>Hat Shop</title>
+  	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
+  	<link rel="stylesheet" href="assets/css/reset.css" type="text/css" media="screen">
+  	<link rel="stylesheet" href="assets/css/grid.css" type="text/css" media="screen">
+  	<link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen">
+  </head>
+  <body>
+  <div ng-app="shop" ng-controller="shopCtrl" >
+
+  	<div class="menu">
+  		<div class="container clearfix">
+  			<div id="logo" class="grid_3">
+  				<img src="assets/img/logo.png">
+  			</div>
+  			<div id="nav" class="grid_9 omega">
+  				<ul class="navigation">
+  					<li id="shop-btn" ng-click="continueShopping()" class="active">Shop</li>
+            <li id="cart-btn"><a ng-click="cart()"><b>Cart<span style="color: red"> ({{cartLength()}} items)</span></b></a></li>
+  				</ul>
+  			</div>
+  		</div>
+  	</div>
+
+  <br><br>
+	<! -- Open Shop -- >
+  	<div id="shop" class="clearfix">
+  		<div class="container clearfix" ng-show="homeSection">
+  			<div>
+  				<h1>The Best Hats on the Internet!</h1>
+  				<p>Nobody has hats like we have hats. Check out our amazing selection below.</p>
+  			</div>
+  			<div id="items">
+          <div ng-repeat="hat in records">
+              <div ng-if="$index == 2" class="grid_4 omega item">
+                <img ng-src="assets/img/{{hat.color}}.jpg" />
+                  <h4>{{hat.color | capitalize}} Hat <span>${{hat.price}}.00</span></h4>
+                    <p>{{hat.description}}</p>
+                  <a ng-click="addHat(hat.color)" id="add" value="5" title="{{hat.color}}" class="button">Add to Cart</a>
+              </div>
+              <div ng-if="$index == 0 || $index == 1" class="grid_4 alpha item">
+                <img ng-src="assets/img/{{hat.color}}.jpg" />
+                  <h4 value="{{hat.color}}" ng-model="hatName">{{hat.color | capitalize}} Hat <span value="{{hat.price}}" ng-model="hatAmount">${{hat.price}}.00</span></h4>
+                    <p>{{hat.description}}</p>
+                  <a ng-click="addHat(hat.color)" id="add" value="5" title="{{hat.color}}" class="button">Add to Cart</a>
+              </div>
+          </div>
+  		  </div>
+  	</div>
+  	<! -- Close Shop -- >
+
+  <! -- Cart Section -- >
+    <div id="car" class="clearfix" ng-show="cartSection">
+      <div class="container clearfix">
+        <div>
+          <h1>Cart </h1>
+        </div>
+        <div id="cart-items">
+          <table>
+            <tbody>
+
+              <tr ng-repeat="hat in shoppingcart.items" id="{{hat.color}}hat">
+                <td>
+                  <img ng-src="assets/img/{{hat.color}}.jpg" />
+                </td>
+                <td>
+                  <h4>{{hat.color | capitalize}} Hat</h4>
+                  <p>Quantity:
+                  <input type="number" ng:model="hat.qty" placeholder="Enter Quantity" ng:required class="input-mini" style="border: 2px solid black; width: 40px; height:30px; font-size: 17px; color: gray; text-align: center;">
+                  </p>
+                  <p>
+                    <a id="remove" value="{{hat.color}}" ng-click="removeItem($index)" class="link">Remove</a>
+                  </p>
+                </td>
+                <td id="{{hat.color}}price" align="right"></td>
+                </tr>
+                <tr>
+                <td colspan="2">
+                  <h4>Total:</h4>
+                </td>
+                <td align="right">${{total()}}.00</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            <a ng-click="checkout()" class="button">Check Out</a>
+          </p>
+          <br>
+          <p>
+            <a ng-click="continueShopping()" id="continue" class="link">Continue Shopping</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  <! -- Open Checkout -- >
+    <div id="checkout" class="clearfix" ng-show="checkoutSection">
+      <div class="container clearfix">
+        <div>
+          <h1>Checkout</h1>
+        </div>
+
+        <form method="post" name="payment-info-form" id="checkout-form">
+          <div class="grid_6 alpha">
+           <h4>Shipping Information</h4>
+           <div class="form-element">
+             <input type="text" name="name" id="name" placeholder="Full Name" />
+           </div>
+           <div class="form-element">
+             <input type="text" name="company" id="company" placeholder="Company" />
+           </div>
+           <div class="form-element">
+             <input type="text" name="street" id="street" placeholder="Street Address" />
+           </div>
+           <div class="form-element">
+              <input type="text" name="unit" id="unit"  placeholder="Unit, Apt., Etc."/>
+           </div>
+         </div>
+
+         <div class="grid_1"></div>
+
+         <div class="grid_5 omega">
+        <h4>Billing Information</h4>
+
+        <table>
+          <div class="ccInfo" style="display: none;">
+          <tr>
+            <div style="display: none;" class="form-element">
+                <select name="auth" id="auth" payeezy-data="auth">
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
+          </div>
+          </tr>
+          <tr>
+            <div style="display: none;" class="form-element">
+              <input type="text" name="currency" id="currency"
+                payeezy-data="currency" value="USD" />
+            </div>
+          </tr>
+          <tr>
+            <div style="display:none;" class="form-element">
+                <select id="card_type" payeezy-data="card_type">
+                  <option value="visa">Visa</option>
+                  <option value="mastercard">Master Card</option>
+                  <option value="American Express">American Express</option>
+                  <option value="discover">Discover</option>
+                </select>
+            </div>
+          </tr>
+
+          <tr>
+            <div class="form-element">
+              <input type="text" id="cardholder_name" payeezy-data="cardholder_name"
+              value="" placeholder="Full Name" required />
+            </div>
+          </tr>
+          <tr>
+            <div class="form-element">
+              <input id="cc_number" type="text" payeezy-data="cc_number" required
+              value="" placeholder="Card Number" />
+            </div>
+          </tr>
+          <tr>
+            <div class="form-element">
+              <input type="text" payeezy-data="cvv_code" value="" placeholder="CVV" required />
+            </div>
+          </tr>
+          <tr>
+            <div class="form-element">
+                <select id="exp_month" payeezy-data="exp_month" required>
+                  <option value="01">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12" selected>12</option>
+                </select>
+                <select id="exp_year" payeezy-data="exp_year" required>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                </select>
+              </div>
+          </tr>
+          <tr>
+          <div class="form-element">
+            <input id="zipcode" type="text" payeezy-data="zip_postal_code"
+              value="" placeholder="Zip Code" required />
+          </div>
+          </tr>
+          <div class="grid_12">
+            <p><a ng-click="showThankyou()" id="order" class="button">Place Order</a></p>
+          </div>
+        </table>
+
+          <h4 style="color: red">
+            <span id="payment-errors"></span>
+          </h4>
+          <h4 style="color: green">
+            <span id="response_msg"></span>
+          </h4>
+          <h4 style="color: blue">
+            <span id="response_note"></span>
+          </h4>
+        </div>
+
+      </div>
+      </form>
+      </div>
+    </div>
+
+  <div id="thankyou" class="clearfix" >
+      <div class="container clearfix" ng-show="thankyouSection">
+        <div>
+          <h1>Thank You!</h1>
+          <p>Your order has been placed.</p>
+          <br>
+          <p>
+            <a class="link" href="shop.html">Back to Shop</a>
+          </p>
+        </div>
+      </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script>
+	var app = angular.module("shop", []);
+	app.controller("shopCtrl", function($scope) {
+	
+	    $scope.homeSection = true;
+	    $scope.cartSection = false;
+	    $scope.checkoutSection = false;
+	    $scope.thankyouSection = false; 
+	
+	    $scope.hats = [];
+	    $scope.checked = [];
+	  
+	   $scope.shoppingcart = {
+	        items: []
+	    };
+	
+	    $scope.addHat = function(a) {
+	      $scope.homeSection = !$scope.homeSection;
+	      $scope.cartSection = !$scope.cartSection;
+	
+	      angular.forEach($scope.records, function(value, key){
+	        var color = value.color;
+	
+	        if (a === color) {
+	          if (color == "red") {
+	            $scope.shoppingcart.items.push({
+	                color: "red",
+	                qty: 1,
+	                description: "Are you a Red Sox fan but don't want to pay for an offical hat? Then this one is for you!",
+	                cost: 5
+	            });
+	          }
+	
+	          if (color == "blue") {
+	             $scope.shoppingcart.items.push({
+	                color: "blue",
+	                qty: 1,
+	                description: "Our classic blue for the Dodgers and Blue Jays fans on a budget.",
+	                cost: 6
+	            });
+	          }
+	
+	          if (color == "green") {
+	             $scope.shoppingcart.items.push({
+	                color: a,
+	                qty: 1,
+	                description: "Show your A's pride without spending an arm and a leg with our Green Hat!",
+	                cost: 7
+	            });
+	          }
+	        }
+	      });
+	
+	       console.log($scope.shoppingcart.items)
+	      }
+	
+	     $scope.removeItem = function(index) {
+	      console.log('removing item');
+	        $scope.showCart = !$scope.showCart;
+	        $scope.showHome = !$scope.showHome;
+	
+	        $scope.shoppingcart.items.splice(index, 1);
+	    }
+	
+	    $scope.continueShopping = function() {
+	        $scope.homeSection = !$scope.homeSection;
+	        $scope.cartSection = !$scope.cartSection;
+	    }
+	
+	    $scope.cart = function() {
+		    $scope.homeSection = false;
+		    $scope.cartSection = true;
+		    $scope.checkoutSection = false;     
+	    }
+	    $scope.updateItem = function(index) {
+	      console.log('updating item');
+	      console.log($scope.shoppingcart.items[index]);
+	    }
+	
+	    $scope.checkout = function() {
+	      $scope.cartSection = !$scope.cartSection;
+	      $scope.checkoutSection = !$scope.checkoutSection;
+	    }
+	
+	    $scope.showThankyou = function() {
+	      $scope.checkoutSection = !$scope.checkoutSection;
+	      $scope.thankyouSection = !$scope.thankyouSection;
+	
+	        var apiKey = 'LRKG8eV5UMIdQZJVF8Or3Nkvr8ccFIAl';
+	        var js_security_key = 'js-e9ecc1dc5792e99bbf19b5544379ad73e9ecc1dc5792e99b';
+	        var auth = 'true';
+	        var ta_token = 'NOIW';
+	
+	        Payeezy.setApiKey(apiKey);
+	        Payeezy.setJs_Security_Key(js_security_key);
+	        Payeezy.setTa_token(ta_token);
+	        Payeezy.setAuth(auth);
+	        Payeezy.setcurrency('USD');
+	        Payeezy.createToken(responseHandler);
+	    }
+	
+	    var responseHandler = function(status, response) {
+	    var $form = $('#checkout-form');
+	    if (status != 201) {
+	         if (response.error && status != 400) {
+	           var error = response["error"];
+	           var errormsg = error["messages"];
+	           var errorcode = JSON.stringify(errormsg[0].code, null, 4);
+	           var errorMessages = JSON.stringify(errormsg[0].description, null, 4);
+	           $('#payment-errors').html( 'Error Code:' + errorcode + ', Error Messages:'
+	                            + errorMessages);
+	        }
+	        if (status == 400 || status == 500) {
+	           $('#payment-errors').html('');
+	           var errormsg = response.Error.messages;
+	           var errorMessages = "";
+	           for(var i in errormsg){
+	            var ecode = errormsg[i].code;
+	            var eMessage = errormsg[i].description;
+	            errorMessages = errorMessages + 'Error Code:' + ecode + ', Error Messages:'
+	                            + eMessage;
+	            }
+	           $('#payment-errors').html( errorMessages);
+	        }
+	        $form.find('button').prop('disabled', false);
+	    } else {
+	        $('#payment-errors').html('');
+	        var result = response.token.value;
+	        console.log(result);
+	
+	        $('#response_msg').html('Payeezy response - Token value:' + result);
+	    }
+	
+	    var expDate = $('#exp_month').val() + $('#exp_year').val();
+	    console.log('exp ' + expDate);
+	
+	    console.log(cardType);
+	    
+	    $.post("http://nicehatsdemo.herokuapp.com/charge", {
+	          amount: total,
+	          cardType: cardType, //$('#card_type').val(),
+	          token: result,
+	          cardName: $('#cardholder_name').val(),
+	          expDate: expDate
+	      },
+	      function(data){
+	        if(data==='done') {
+	            alert("payment success");
+	          }
+	      });
+	      $('#checkout').hide();
+	      $('#thankyou').fadeIn();
+	  };
+	
+	
+	   $scope.total = function() {
+	      var total = 0;
+	      angular.forEach($scope.shoppingcart.items, function(item) {
+	          total += item.qty * item.cost;
+	      })
+	      return total;
+	  }
+	
+	  $scope.cartLength = function() {
+	    console.log('called');
+	    return $scope.shoppingcart.items.length;
+	  }
+	
+	  $scope.records = [
+	    {color:"red", price:"5", description:"Are you a Red Sox fan but don't want to pay for an offical hat? Then this one is for you!"},
+	    {color:"blue", price:"6", description:"Our classic blue for the Dodgers and Blue Jays fans on a budget."},
+	    {color:"green", price:"7", description:"Show your A's pride without spending an arm and a leg with our Green Hat!"},
+	    ]
+	  });
+	
+	app.filter('capitalize', function() {
+	    return function(input) {
+	      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+	    }
+	});
+	</script>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.creditCardValidator.js"></script>
+	<script src="js/payeezy_us_v5.1.js"></script>
+
+	</div>
+  </body>
+</html>
