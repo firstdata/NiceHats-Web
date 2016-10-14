@@ -7,9 +7,8 @@ Nice Hats is an example ecommerce site which uses FirstData's Payeezy API (sandb
 ## How do I get started?
 Visit nicehatsdemo.com to see a live demo or clone this repo and install the dependencies via the following commands:
 <pre>
-npm instal --save
+npm install --save
 node index.js
 </pre>
 
 Visit localhost:3000 to view the site.
-# NiceHats-Angular
