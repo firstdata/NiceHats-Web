@@ -29,7 +29,7 @@
   		</div>
   	</div>
   <br /><br />
-	<! -- Open Shop -- >
+	<!-- Open Shop -->
   	<div id="shop" class="clearfix">
   		<div class="container clearfix" ng-show="homeSection">
   			<div>
@@ -53,9 +53,8 @@
           </div>
   		  </div>
   	</div>
-    <! -- Close Shop -- >
-
-    <! -- Cart Section -- >
+    <!-- Close Shop -->
+    <!-- Cart Section -->
     <div id="car" class="clearfix" ng-show="cartSection">
       <div class="container clearfix">
         <div>
@@ -90,15 +89,14 @@
           <p>
             <a ng-click="checkout()" class="button">Check Out</a>
           </p>
-          <br>
+          <br />
           <p>
             <a ng-click="continueShopping()" id="continue" class="link">Continue Shopping</a>
           </p>
         </div>
       </div>
     </div>
-
-    <! -- Open Checkout -- >
+    <!-- Open Checkout -->
     <div id="checkout" class="clearfix" ng-show="checkoutSection">
       <div class="container clearfix">
         <div>
@@ -122,118 +120,117 @@
          </div>
          <div class="grid_1"></div>
          <div class="grid_5 omega">
-        <h4>Billing Information</h4>
-        <table>
-          <div class="ccInfo" style="display: none;">
-          <tr>
-            <div style="display: none;" class="form-element">
-                <select name="auth" id="auth" payeezy-data="auth">
-                <option value="true">true</option>
-                <option value="false">false</option>
-            </select>
+            <h4>Billing Information</h4>
+              <table>
+                <div class="ccInfo" style="display: none;">
+                <tr>
+                  <div style="display: none;" class="form-element">
+                      <select name="auth" id="auth" payeezy-data="auth">
+                      <option value="true">true</option>
+                      <option value="false">false</option>
+                  </select>
+                </div>
+                </tr>
+                <tr>
+                  <div style="display: none;" class="form-element">
+                    <input type="text" name="currency" id="currency"
+                      payeezy-data="currency" value="USD" />
+                  </div>
+                </tr>
+                <tr>
+                  <div style="display:none;" class="form-element">
+                      <select id="card_type" payeezy-data="card_type">
+                        <option value="visa">Visa</option>
+                        <option value="mastercard">Master Card</option>
+                        <option value="American Express">American Express</option>
+                        <option value="discover">Discover</option>
+                      </select>
+                  </div>
+                </tr>
+                <tr>
+                  <div class="form-element">
+                    <input type="text" id="cardholder_name" payeezy-data="cardholder_name"
+                    value="" placeholder="Full Name" required />
+                  </div>
+                </tr>
+                <tr>
+                  <div class="form-element">
+                    <input id="cc_number" type="text" payeezy-data="cc_number" required
+                    value="" placeholder="Card Number" />
+                  </div>
+                </tr>
+                <tr>
+                  <div class="form-element">
+                    <input type="text" payeezy-data="cvv_code" value="" placeholder="CVV" required />
+                  </div>
+                </tr>
+                <tr>
+                  <div class="form-element">
+                      <select id="exp_month" payeezy-data="exp_month" required>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12" selected>12</option>
+                      </select>
+                      <select id="exp_year" payeezy-data="exp_year" required>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                      </select>
+                    </div>
+                </tr>
+                <tr>
+                <div class="form-element">
+                  <input id="zipcode" type="text" payeezy-data="zip_postal_code"
+                    value="" placeholder="Zip Code" required />
+                </div>
+                </tr>
+                <div class="grid_12">
+                  <p>
+                    <a ng-click="showThankyou()" id="order" class="button">Place Order</a>
+                  </p>
+                </div>
+              </table>
+              <h4 style="color: red">
+                <span id="payment-errors"></span>
+              </h4>
+              <h4 style="color: green">
+                <span id="response_msg"></span>
+              </h4>
+              <h4 style="color: blue">
+                <span id="response_note"></span>
+              </h4>
+            </div>
           </div>
-          </tr>
-          <tr>
-            <div style="display: none;" class="form-element">
-              <input type="text" name="currency" id="currency"
-                payeezy-data="currency" value="USD" />
-            </div>
-          </tr>
-          <tr>
-            <div style="display:none;" class="form-element">
-                <select id="card_type" payeezy-data="card_type">
-                  <option value="visa">Visa</option>
-                  <option value="mastercard">Master Card</option>
-                  <option value="American Express">American Express</option>
-                  <option value="discover">Discover</option>
-                </select>
-            </div>
-          </tr>
-          <tr>
-            <div class="form-element">
-              <input type="text" id="cardholder_name" payeezy-data="cardholder_name"
-              value="" placeholder="Full Name" required />
-            </div>
-          </tr>
-          <tr>
-            <div class="form-element">
-              <input id="cc_number" type="text" payeezy-data="cc_number" required
-              value="" placeholder="Card Number" />
-            </div>
-          </tr>
-          <tr>
-            <div class="form-element">
-              <input type="text" payeezy-data="cvv_code" value="" placeholder="CVV" required />
-            </div>
-          </tr>
-          <tr>
-            <div class="form-element">
-                <select id="exp_month" payeezy-data="exp_month" required>
-                  <option value="01">01</option>
-                  <option value="02">02</option>
-                  <option value="03">03</option>
-                  <option value="04">04</option>
-                  <option value="05">05</option>
-                  <option value="06">06</option>
-                  <option value="07">07</option>
-                  <option value="08">08</option>
-                  <option value="09">09</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12" selected>12</option>
-                </select>
-                <select id="exp_year" payeezy-data="exp_year" required>
-                  <option value="16">16</option>
-                  <option value="17">17</option>
-                  <option value="18">18</option>
-                  <option value="19">19</option>
-                  <option value="20">20</option>
-                  <option value="21">21</option>
-                </select>
-              </div>
-          </tr>
-          <tr>
-          <div class="form-element">
-            <input id="zipcode" type="text" payeezy-data="zip_postal_code"
-              value="" placeholder="Zip Code" required />
-          </div>
-          </tr>
-          <div class="grid_12">
-            <p><a ng-click="showThankyou()" id="order" class="button">Place Order</a></p>
-          </div>
-        </table>
-          <h4 style="color: red">
-            <span id="payment-errors"></span>
-          </h4>
-          <h4 style="color: green">
-            <span id="response_msg"></span>
-          </h4>
-          <h4 style="color: blue">
-            <span id="response_note"></span>
-          </h4>
-        </div>
-      </div>
-      </form>
+        </form>
       </div>
     </div>
-
-  <div id="thankyou" class="clearfix" >
+    <div id="thankyou" class="clearfix" >
       <div class="container clearfix" ng-show="thankyouSection">
         <div>
           <h1>Thank You!</h1>
-          <p>Your order has been placed.</p>
-          <br>
-          <p>
-            <a class="link" href="shop.html">Back to Shop</a>
-          </p>
+            <p>Your order has been placed.</p>
+            <br />
+            <p>
+              <a class="link" href="shop.html">Back to Shop</a>
+            </p>
         </div>
       </div>
-  </div>
-
+    </div>
     <script src="/js/angular.js"></script>
     <script src="/js/store.js"></script>
   	<script src="js/payeezy_us_v5.1.js"></script>
-
     </div>
   </body>
 </html>
