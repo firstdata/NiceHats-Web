@@ -12,3 +12,8 @@ node index.js
 </pre>
 
 Visit localhost:3000 to view the site.
+
+## Deploy to Heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/firstdata/NiceHats-Web/tree/master)
+
