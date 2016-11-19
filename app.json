@@ -1,0 +1,7 @@
+{
+  "name": "Nice Hats Demo App",
+  "description": "A Simple App Using Payeezy SDKs",
+  "repository": "https://github.com/firstdata/NiceHats-Web",
+  "logo": "https://developer.firstdata.com/img/logo.png",
+  "keywords": ["node", "express", "static"]
+}
